@@ -1,0 +1,11 @@
+<form [formGroup]="loginForm" (submit)="login()">
+  <label class="input">
+    <input type="text" class="grow" formControlName="email" />
+  </label>
+  <label class="input">
+    <input type="password" class="grow" formControlName="password" />
+  </label>
+
+  <button class="btn-primary" [disabled]="!loginForm.valid" type="submit">Login</button>
+  <button class="btn-primary" type="button" (click)="test()">Test</button>
+</form>

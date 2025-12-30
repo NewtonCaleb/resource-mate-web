@@ -1,0 +1,5 @@
+.side-nav {
+  max-height: calc(100vh - 61px);
+  min-height: calc(100vh - 61px);
+  height: 100%;
+}

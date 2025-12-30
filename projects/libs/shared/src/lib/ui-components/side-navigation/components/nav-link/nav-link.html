@@ -1,0 +1,12 @@
+<li>
+  <a
+    [routerLink]="route().url"
+    class="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+    routerLinkActive="bg-primary/15"
+    [routerLinkActiveOptions]="route().url === '/' ? { exact: true } : { exact: false }"
+    [attr.data-tip]="route().label"
+  >
+    <span [class]="route().icon"></span>
+    <span class="is-drawer-close:hidden">{{ route().label }}</span>
+  </a>
+</li>

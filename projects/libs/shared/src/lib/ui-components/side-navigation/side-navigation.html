@@ -1,0 +1,16 @@
+<div class="drawer drawer-open">
+  <input id="side-nav-drawer" [checked]="isExpanded()" type="checkbox" class="drawer-toggle" />
+
+  <div class="side-nav drawer-side is-drawer-close:overflow-visible">
+    <label for="side-nav-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
+    <div
+      class="flex h-full flex-col items-start shadow-sm bg-base-200 is-drawer-close:w-14 is-drawer-open:w-50"
+    >
+      <ul class="menu w-full grow">
+        @for (config of routes(); track $index) {
+        <shared-nav-link [route]="config"></shared-nav-link>
+        }
+      </ul>
+    </div>
+  </div>
+</div>

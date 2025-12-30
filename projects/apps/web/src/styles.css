@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'tailwindcss';
+@plugin "daisyui" {
+  themes: light, dark;
+}
+
+@plugin "daisyui/theme" {
+  name: 'light';
+  default: true;
+  --color-primary: oklch(0.75 0.13 199.93 / 1);
+}
+
+@plugin "daisyui/theme" {
+  name: 'dark';
+  --color-primary: oklch(0.75 0.13 199.93 / 1);
+}
