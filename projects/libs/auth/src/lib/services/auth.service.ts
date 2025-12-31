@@ -22,7 +22,8 @@ export class AuthService {
       this.token = token;
       localStorage.setItem('access-token', token);
     } else {
-      throw Error('Local storage is not available');
+      console.log('Local storage is not available');
+      return;
     }
   }
 
@@ -38,7 +39,7 @@ export class AuthService {
     if (this.isBrowser) {
       return this.token;
     } else {
-      throw Error('Local storage is not available');
+      return null;
     }
   }
 

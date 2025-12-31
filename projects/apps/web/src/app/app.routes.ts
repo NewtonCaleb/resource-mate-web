@@ -1,17 +1,20 @@
 import {
   ActivatedRouteSnapshot,
   CanActivateFn,
+  ResolveFn,
   Router,
   RouterStateSnapshot,
   Routes,
 } from '@angular/router';
 import { LoginPage } from '@libs/auth';
-import { Header } from '@libs/shared';
+import { Header, User } from '@libs/shared';
 import { AuthService } from '@libs/auth';
 
 import { inject, PLATFORM_ID } from '@angular/core';
 import { AuthorizedLayoutComponent } from './layouts/authorized-layout.component/authorized-layout.component';
 import { isPlatformBrowser } from '@angular/common';
+import { HomeComponent } from './features/home/pages/root/home.component';
+import { UsersService } from '@libs/api';
 
 const authGuard: CanActivateFn = (
   route: ActivatedRouteSnapshot,
@@ -30,15 +33,26 @@ const authGuard: CanActivateFn = (
   return false;
 };
 
+// export const userResolver: ResolveFn<User | undefined> = (
+//   route: ActivatedRouteSnapshot,
+//   state: RouterStateSnapshot
+// ) => {
+//   const _usersService = inject(UsersService);
+//   return _usersService.getCurrentUser();
+// };
+
 export const routes: Routes = [
   {
     path: '',
     component: AuthorizedLayoutComponent,
     canActivateChild: [authGuard],
+    // resolve: {
+    //   user: userResolver,
+    // },
     children: [
       {
         path: '',
-        component: Header,
+        component: HomeComponent,
       },
       {
         path: 'agencies',

@@ -1,7 +1,8 @@
-import { Component, inject, model, OnInit } from '@angular/core';
+import { Component, inject, model, OnInit, signal } from '@angular/core';
 import { Header } from '@libs/shared';
 import { SideNavigation, RouteConfig } from '@libs/shared';
 import { RouterOutlet } from '@angular/router';
+import { UsersService } from '@libs/api';
 
 @Component({
   selector: 'app-authorized-layout.component',
@@ -9,7 +10,9 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './authorized-layout.component.html',
   styleUrl: './authorized-layout.component.css',
 })
-export class AuthorizedLayoutComponent {
+export class AuthorizedLayoutComponent implements OnInit {
+  private readonly _usersService = inject(UsersService);
+  loaded = signal(false);
   sideNavExpandState = model(true);
 
   sideNavigationConfig: RouteConfig[] = [
@@ -32,4 +35,10 @@ export class AuthorizedLayoutComponent {
       label: 'Services',
     },
   ];
+
+  ngOnInit(): void {
+    this._usersService.setCurrentUser().then(() => {
+      this.loaded.set(true);
+    });
+  }
 }
