@@ -4,12 +4,14 @@ import { API_CONFIG } from '@libs/api';
 import { Login } from '../models/login';
 import { isPlatformBrowser } from '@angular/common';
 import { lastValueFrom } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   private readonly baseUrl = inject(API_CONFIG).apiUrl;
+  private readonly _router = inject(Router);
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
 
   private readonly client = inject(HttpClient);
@@ -24,6 +26,14 @@ export class AuthService {
     }
   }
 
+  private clearToken(): void {
+    if (this.isBrowser) {
+      this.token = null;
+      localStorage.removeItem('access-token');
+      this._router.navigate(['login']);
+    }
+  }
+
   getToken(): string | null {
     if (this.isBrowser) {
       return this.token;
@@ -32,20 +42,21 @@ export class AuthService {
     }
   }
 
-  private clearToken(): void {
-    if (this.isBrowser) {
-      this.token = null;
-      localStorage.removeItem('access-token');
+  isAuthenticated(): boolean {
+    try {
+      return this.getToken() !== null && this.getToken()?.trim() !== '' ? true : false;
+    } catch (error) {
+      return false;
     }
   }
 
-  test() {
-    return this.client.get(`${this.baseUrl}/Users/GetAll`);
+  logout(): void {
+    this.clearToken();
   }
 
   async login(credentials: Login): Promise<boolean> {
-    return await lastValueFrom(this.client.post(`${this.baseUrl}/Users/Login`, credentials)).then(
-      (res: any) => {
+    return await lastValueFrom(this.client.post(`${this.baseUrl}/Users/Login`, credentials))
+      .then((res: any) => {
         if (res['token']) {
           try {
             this.setToken(res['token']);
@@ -55,28 +66,9 @@ export class AuthService {
         }
 
         return true;
-      }
-    );
-    // this.client.post(`${this.baseUrl}/Users/Login`, credentials).subscribe({
-    //   next: (res: any) => {
-    //     if (res['token']) {
-    //       try {
-    //         this.setToken(res['token']);
-    //       } catch (error) {
-    //         return;
-    //       }
-    //     }
-
-    //     loggedIn = true;
-    //   },
-    //   error: (err: any) => {
-    //     console.error(err);
-    //     this.clearToken();
-    //   },
-    // });
+      })
+      .catch((e) => {
+        return false;
+      });
   }
-}
-
-interface LoginSuccess extends Object {
-  token: string;
 }

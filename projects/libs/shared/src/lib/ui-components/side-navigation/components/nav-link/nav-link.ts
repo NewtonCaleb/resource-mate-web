@@ -1,5 +1,6 @@
 import { Component, input } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { RouteConfig } from '../../interfaces/route-config';
 
 @Component({
   selector: 'shared-nav-link',
@@ -9,17 +10,9 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 })
 export class NavLink {
   route = input<RouteConfig>({
-    id: 1,
-    url: '/',
-    icon: 'bi-house-door',
-    label: 'Dashboard',
+    id: -1,
+    url: '',
+    icon: '',
+    label: 'Unpopulate NavLink',
   });
-}
-
-export interface RouteConfig {
-  id: number;
-  url: string;
-  icon: string;
-  label: string;
-  active?: boolean;
 }

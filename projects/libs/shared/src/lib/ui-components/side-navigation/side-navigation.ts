@@ -1,6 +1,7 @@
 import { Component, inject, input, model, ModelSignal, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { NavLink, RouteConfig } from './components/nav-link/nav-link';
+import { RouteConfig } from './interfaces/route-config';
+import { NavLink } from './components/nav-link/nav-link';
 
 @Component({
   selector: 'shared-side-navigation',
@@ -11,20 +12,7 @@ import { NavLink, RouteConfig } from './components/nav-link/nav-link';
 export class SideNavigation {
   private readonly breakpointObserver$ = inject(BreakpointObserver);
   isExpanded: ModelSignal<boolean> = model(true);
-  protected routes = input<RouteConfig[]>([
-    {
-      id: 1,
-      url: '/',
-      icon: 'bi-house-door',
-      label: 'Homepage',
-    },
-    {
-      id: 2,
-      url: '/test',
-      icon: 'bi-house-door-fill',
-      label: 'Test',
-    },
-  ]);
+  routes = input<RouteConfig[]>([]);
 
   ngOnInit(): void {
     this.breakpointObserver$.observe([Breakpoints.XSmall, Breakpoints.Small]).subscribe({

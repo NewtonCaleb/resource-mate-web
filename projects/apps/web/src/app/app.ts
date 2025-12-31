@@ -1,14 +1,13 @@
-import { Component, inject, model, OnInit } from '@angular/core';
-import { Header } from '@libs/shared';
-import { SideNavigation } from '@libs/shared';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
+// Register all Community features
+ModuleRegistry.registerModules([AllCommunityModule]);
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Header, SideNavigation],
+  imports: [RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
-export class App {
-  sideNavExpandState = model(true);
-}
+export class App {}

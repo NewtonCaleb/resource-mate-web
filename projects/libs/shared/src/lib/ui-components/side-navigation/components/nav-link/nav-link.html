@@ -1,9 +1,11 @@
 <li>
   <a
     [routerLink]="route().url"
-    class="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+    class="is-drawer-close:tooltip is-drawer-close:tooltip-right is-drawer-close:text-center"
     routerLinkActive="bg-primary/15"
-    [routerLinkActiveOptions]="route().url === '/' ? { exact: true } : { exact: false }"
+    [routerLinkActiveOptions]="
+      route().url === '/' || route().url.trim() === '' ? { exact: true } : { exact: false }
+    "
     [attr.data-tip]="route().label"
   >
     <span [class]="route().icon"></span>

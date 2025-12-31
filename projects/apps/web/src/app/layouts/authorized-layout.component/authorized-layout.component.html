@@ -1,0 +1,11 @@
+<shared-header [(sideNavExpanded)]="sideNavExpandState"></shared-header>
+
+<div class="flex">
+  <shared-side-navigation
+    [(isExpanded)]="sideNavExpandState"
+    [routes]="sideNavigationConfig"
+  ></shared-side-navigation>
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+</div>
