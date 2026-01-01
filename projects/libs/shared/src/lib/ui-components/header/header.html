@@ -3,7 +3,9 @@
   style="min-height: 60px; max-height: 60px; margin-bottom: 1px"
 >
   <div class="flex items-center">
-    <a routerLink="/" class="text-primary bi bi-bluesky text-3xl me-3"></a>
+    <a routerLink="/" class="text-primary h-[3rem] w-[3rem] me-3">
+      <Logo />
+    </a>
     <button class="btn btn-circle w-7 h-7" (click)="sideNavExpanded.set(!sideNavExpanded())">
       <label class="swap swap-rotate pointer-events-none grid ms-2" aria-hidden="true">
         <input type="checkbox" tabindex="-1" aria-hidden="true" [checked]="sideNavExpanded()" />

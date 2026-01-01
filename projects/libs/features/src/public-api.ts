@@ -2,4 +2,5 @@
  * Public API Surface of features
  */
 
-export * from './lib/features';
+export type { Agency, AgencyForm } from './lib/agencies/types';
+export { AgenciesService } from './lib/agencies/services/agencies.service';

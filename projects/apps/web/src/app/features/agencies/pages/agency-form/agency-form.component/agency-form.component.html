@@ -1,0 +1,46 @@
+<form [formGroup]="agencyForm" (submit)="submit()">
+  <div class="card">
+    <h1 class="card-title">
+      Creating {{ (agencyForm.get('name')?.valueChanges | async) || 'a New Agency' }}
+    </h1>
+    <div class="card-body flex flex-col gap-y-[2rem]">
+      <label class="floating-label">
+        <input type="text" placeholder="Name" formControlName="name" id="name" class="input" />
+        <span><span class="me-[0.5rem] bi bi-alphabet"></span>Name</span>
+      </label>
+      <label class="floating-label">
+        <input type="text" placeholder="City" formControlName="city" id="city" class="input" />
+        <span><span class="me-[0.5rem] bi bi-geo"></span>City</span>
+      </label>
+      <label class="floating-label">
+        <input type="text" placeholder="State" formControlName="state" id="state" class="input" />
+        <span><span class="me-[0.5rem] bi bi-globe-americas"></span>State</span>
+      </label>
+      <label class="floating-label">
+        <input type="text" placeholder="Zip" formControlName="zip" id="zip" class="input" />
+        <span><span class="me-[0.5rem] bi bi-123"></span>Zip</span>
+      </label>
+      <label class="floating-label">
+        <input class="input" type="email" placeholder="Email" formControlName="email" id="email" />
+        <span><span class="me-[0.5rem] bi bi-envelope"></span> Email</span>
+      </label>
+      <label class="floating-label">
+        <input type="text" placeholder="Phone" formControlName="phone" id="phone" class="input" />
+        <span><span class="me-[0.5rem] bi bi-telephone"></span>Phone</span>
+      </label>
+      <label class="floating-label">
+        <input
+          type="text"
+          placeholder="Website"
+          formControlName="website"
+          id="website"
+          class="input"
+        />
+        <span><span class="me-[0.5rem] bi bi-globe2"></span>Website</span>
+      </label>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-outline btn-primary mt-[2rem] w-full">
+    {{ isNewForm ? 'Create' : 'Save' }}
+  </button>
+</form>

@@ -1,1 +1,10 @@
-<p>agency-list.component works!</p>
+<div class="flex w-full mb-[0.5rem]">
+  <button class="ms-auto btn btn-ghost btn-success" (click)="createNewAgency()">Create New</button>
+</div>
+<ag-grid-angular
+  [theme]="theme"
+  class="h-[75vh] w-full"
+  [rowData]="rowData()"
+  (rowClicked)="navigateToForm($event)"
+  [columnDefs]="colDefs"
+></ag-grid-angular>

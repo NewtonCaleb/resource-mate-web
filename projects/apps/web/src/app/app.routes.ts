@@ -15,6 +15,9 @@ import { AuthorizedLayoutComponent } from './layouts/authorized-layout.component
 import { isPlatformBrowser } from '@angular/common';
 import { HomeComponent } from './features/home/pages/root/home.component';
 import { UsersService } from '@libs/api';
+import { AgencyListComponent } from './features/agencies/pages/agency-list/agency-list.component';
+import { AgencyFormComponent } from './features/agencies/pages/agency-form/agency-form.component/agency-form.component';
+import { AgencyDetailsComponent } from './features/agencies/pages/agency-details/agency-details.component/agency-details.component';
 
 const authGuard: CanActivateFn = (
   route: ActivatedRouteSnapshot,
@@ -56,7 +59,20 @@ export const routes: Routes = [
       },
       {
         path: 'agencies',
-        component: Header,
+        children: [
+          {
+            path: '',
+            component: AgencyListComponent,
+          },
+          {
+            path: ':id/details',
+            component: AgencyDetailsComponent,
+          },
+          {
+            path: ':id',
+            component: AgencyFormComponent,
+          },
+        ],
       },
       {
         path: 'services',

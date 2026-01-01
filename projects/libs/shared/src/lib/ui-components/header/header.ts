@@ -1,10 +1,11 @@
 import { Component, inject, input, model } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '@libs/auth';
+import { LogoComponent } from '../../assets/logo/logo.component';
 
 @Component({
   selector: 'shared-header',
-  imports: [RouterLink],
+  imports: [RouterLink, LogoComponent],
   templateUrl: './header.html',
   styleUrl: './header.css',
 })
