@@ -1,22 +1,22 @@
 import { AsyncPipe } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { AgenciesService, AgencyForm } from '@libs/features';
 import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-agency-form',
-  imports: [ReactiveFormsModule, AsyncPipe],
+  imports: [ReactiveFormsModule, AsyncPipe, RouterLink],
   templateUrl: './agency-form.component.html',
   styleUrl: './agency-form.component.css',
 })
 export class AgencyFormComponent implements OnInit {
   private readonly _agneciesService = inject(AgenciesService);
-  private readonly _currentRoute = inject(ActivatedRoute);
+  private readonly _activatedRoute = inject(ActivatedRoute);
   private readonly _router = inject(Router);
 
-  isNewForm = this._currentRoute.snapshot.params['id'] === '0';
+  isNewForm = this._activatedRoute.snapshot.url[0].path === 'new';
 
   agencyForm = new FormGroup({
     name: new FormControl('', { validators: this.isNewForm ? Validators.required : null }),
@@ -26,16 +26,17 @@ export class AgencyFormComponent implements OnInit {
     email: new FormControl('', { validators: this.isNewForm ? Validators.required : null }),
     phone: new FormControl(''),
     website: new FormControl(''),
+    description: new FormControl(''),
   });
 
   ngOnInit(): void {
     if (!this.isNewForm) {
-      lastValueFrom(this._agneciesService.getById(this._currentRoute.snapshot.params['id'])).then(
+      lastValueFrom(this._agneciesService.getById(this._activatedRoute.snapshot.params['id'])).then(
         (res) => {
           if (res === null) {
             this._router.navigate(['agencies']);
           }
-
+          console.log(res);
           this.agencyForm.setValue({
             name: res?.name ?? '',
             city: res?.city ?? '',
@@ -44,6 +45,7 @@ export class AgencyFormComponent implements OnInit {
             email: res?.email ?? '',
             phone: res?.phone ?? '',
             website: res?.website ?? '',
+            description: res?.description ?? '',
           });
         }
       );
@@ -56,8 +58,14 @@ export class AgencyFormComponent implements OnInit {
 
     const form = this.agencyForm.value as AgencyForm;
     try {
-      const createdId = await lastValueFrom(this._agneciesService.add(form));
-      this._router.navigate(['agencies', createdId, 'details']);
+      if (!this.isNewForm) {
+        form.id = this._activatedRoute.snapshot.params['id'];
+        await lastValueFrom(this._agneciesService.update(form));
+        this._router.navigate(['..'], { relativeTo: this._activatedRoute });
+      } else {
+        const createdId = await lastValueFrom(this._agneciesService.add(form));
+        this._router.navigate(['agencies', createdId, 'details']);
+      }
     } catch (error) {
       // TODO:  Throw some error here
       console.log(error);

@@ -1,7 +1,6 @@
 import {
   ActivatedRouteSnapshot,
   CanActivateFn,
-  ResolveFn,
   Router,
   RouterStateSnapshot,
   Routes,
@@ -14,10 +13,9 @@ import { inject, PLATFORM_ID } from '@angular/core';
 import { AuthorizedLayoutComponent } from './layouts/authorized-layout.component/authorized-layout.component';
 import { isPlatformBrowser } from '@angular/common';
 import { HomeComponent } from './features/home/pages/root/home.component';
-import { UsersService } from '@libs/api';
 import { AgencyListComponent } from './features/agencies/pages/agency-list/agency-list.component';
-import { AgencyFormComponent } from './features/agencies/pages/agency-form/agency-form.component/agency-form.component';
-import { AgencyDetailsComponent } from './features/agencies/pages/agency-details/agency-details.component/agency-details.component';
+import { AgencyFormComponent } from './features/agencies/pages/agency-form/agency-form.component';
+import { AgencyDetailsComponent } from './features/agencies/pages/agency-details/agency-details.component';
 
 const authGuard: CanActivateFn = (
   route: ActivatedRouteSnapshot,
@@ -36,22 +34,11 @@ const authGuard: CanActivateFn = (
   return false;
 };
 
-// export const userResolver: ResolveFn<User | undefined> = (
-//   route: ActivatedRouteSnapshot,
-//   state: RouterStateSnapshot
-// ) => {
-//   const _usersService = inject(UsersService);
-//   return _usersService.getCurrentUser();
-// };
-
 export const routes: Routes = [
   {
     path: '',
     component: AuthorizedLayoutComponent,
     canActivateChild: [authGuard],
-    // resolve: {
-    //   user: userResolver,
-    // },
     children: [
       {
         path: '',
@@ -65,12 +52,16 @@ export const routes: Routes = [
             component: AgencyListComponent,
           },
           {
-            path: ':id/details',
-            component: AgencyDetailsComponent,
+            path: 'new',
+            component: AgencyFormComponent,
+          },
+          {
+            path: ':id/edit',
+            component: AgencyFormComponent,
           },
           {
             path: ':id',
-            component: AgencyFormComponent,
+            component: AgencyDetailsComponent,
           },
         ],
       },

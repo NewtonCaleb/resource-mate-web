@@ -23,6 +23,10 @@ export class AgenciesService {
     return this._httpClient.post(this.API_URL, agency);
   }
 
+  update(agency: AgencyForm) {
+    return this._httpClient.put(this.API_URL, agency);
+  }
+
   getById(id: number) {
     return this._httpClient.get<Agency | null>(`${this.API_URL}/${id}`);
   }

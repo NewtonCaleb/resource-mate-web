@@ -1,0 +1,66 @@
+@if (loading()) {
+<div
+  class="glass h-full w-full absolute inset-0 z-99 flex align-center content-center justify-center"
+>
+  <span class="loading loading-dots w-1/16 text-primary"></span>
+</div>
+} @else {
+<a routerLink="../" class="block link no-underline hover:text-primary mb-[1rem]">
+  <i class="bi bi-chevron-left me-1"></i>Back
+</a>
+
+<div class="card">
+  <h1 class="flex card-title flex justify-between">
+    <span>{{ agency()?.name }}</span>
+    <a routerLink="edit" class="bi bi-pencil-square hover:text-primary"></a>
+  </h1>
+  <div class="card-body">
+    <section class="flex flex-col gap-y-2">
+      <h2 class="section-heading"><span class="bi bi-geo-fill me-2"></span>Location</h2>
+      <div>
+        <span
+          class="text-lg"
+          >{{ `${agency()?.city || 'Unknown'}, ${agency()?.state || 'Unknown'}, ${agency()?.zip}` }}</span
+        >
+      </div>
+    </section>
+    <section class="flex flex-col gap-y-2">
+      <h2 class="section-heading">
+        <span class="bi bi-person-vcard-fill me-2"></span>Contact Information
+      </h2>
+      <div>
+        <p class="text-faded">Email</p>
+        <span class="text-lg">{{ agency()?.email || 'No email given' }}</span>
+      </div>
+      <div>
+        <p class="text-faded">Phone</p>
+        <span class="text-lg">{{ agency()?.phone || 'No phone given' }}</span>
+      </div>
+      <div>
+        <p class="text-faded">Website</p>
+        <span class="text-lg">{{ agency()?.website || 'No website given' }}</span>
+      </div>
+    </section>
+
+    <section class="flex flex-col gap-y-2">
+      <h2 class="section-heading">
+        <span class="bi bi-chat-right-text-fill me-2"></span>Extra Notes
+      </h2>
+      <div>
+        <span>{{ agency()?.description || 'No description given' }} </span>
+      </div>
+    </section>
+
+    <div class="flex flex-col items-end mt-3">
+      <small class="text-faded">
+        Created by {{ agency()?.createdBy?.email || 'unknown' }} @
+        {{ (agency()?.createdAt | date : 'MM/dd/yyyy hh:mm') || 'unknown time' }}
+      </small>
+      <small class="text-faded">
+        Updated by {{ agency()?.lastUpdatedBy?.email || 'unknown' }} @
+        {{ (agency()?.lastUpdatedAt | date : 'MM/dd/yyyy hh:mm') || 'unknown time' }}
+      </small>
+    </div>
+  </div>
+</div>
+}

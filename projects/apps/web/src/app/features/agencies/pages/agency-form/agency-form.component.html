@@ -1,12 +1,20 @@
+<a routerLink="../" class="block link no-underline hover:text-primary mb-[1rem]">
+  <i class="bi bi-chevron-left me-1"></i>Back
+</a>
+
 <form [formGroup]="agencyForm" (submit)="submit()">
   <div class="card">
     <h1 class="card-title">
-      Creating {{ (agencyForm.get('name')?.valueChanges | async) || 'a New Agency' }}
+      {{ (agencyForm.get('name')?.valueChanges | async) || 'Cool Agency Name' }}
     </h1>
     <div class="card-body flex flex-col gap-y-[2rem]">
       <label class="floating-label">
         <input type="text" placeholder="Name" formControlName="name" id="name" class="input" />
         <span><span class="me-[0.5rem] bi bi-alphabet"></span>Name</span>
+      </label>
+      <label class="floating-label">
+        <input class="input" type="email" placeholder="Email" formControlName="email" id="email" />
+        <span><span class="me-[0.5rem] bi bi-envelope"></span> Email</span>
       </label>
       <label class="floating-label">
         <input type="text" placeholder="City" formControlName="city" id="city" class="input" />
@@ -21,10 +29,6 @@
         <span><span class="me-[0.5rem] bi bi-123"></span>Zip</span>
       </label>
       <label class="floating-label">
-        <input class="input" type="email" placeholder="Email" formControlName="email" id="email" />
-        <span><span class="me-[0.5rem] bi bi-envelope"></span> Email</span>
-      </label>
-      <label class="floating-label">
         <input type="text" placeholder="Phone" formControlName="phone" id="phone" class="input" />
         <span><span class="me-[0.5rem] bi bi-telephone"></span>Phone</span>
       </label>
@@ -37,6 +41,16 @@
           class="input"
         />
         <span><span class="me-[0.5rem] bi bi-globe2"></span>Website</span>
+      </label>
+      <label class="floating-label">
+        <textarea
+          type="text"
+          placeholder="Description"
+          formControlName="description"
+          id="description"
+          class="textarea"
+        ></textarea>
+        <span><span class="me-[0.5rem] bi bi-input-cursor-text"></span>Description</span>
       </label>
     </div>
   </div>

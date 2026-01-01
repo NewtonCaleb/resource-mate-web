@@ -9,6 +9,7 @@ export type Agency = {
   email: string;
   phone?: string;
   website?: string;
+  description?: string;
   deleted: boolean;
   lastUpdatedAt?: Date;
   createdAt?: Date;
@@ -30,4 +31,5 @@ export type AgencyForm = {
   email?: string;
   phone?: string;
   website?: string;
+  description?: string;
 };

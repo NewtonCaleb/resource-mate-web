@@ -13,11 +13,18 @@
   name: 'dark';
   default: true;
   --color-primary: oklch(0.75 0.13 199.93 / 1);
-  --bc: red;
 }
 
 .input {
   @apply focus:border-primary hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary w-full;
+}
+
+.textarea {
+  @apply focus:border-primary hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary w-full;
+}
+
+.border-b-faded {
+  @apply border-b-2 border-base-content/20;
 }
 
 .card {
@@ -25,11 +32,38 @@
 }
 
 .card-title {
-  @apply text-4xl mb-[0.25rem] p-[1rem] border-b-2 border-base-300;
+  @apply text-4xl p-[1rem] border-b-2 border-base-content/5;
 }
 
 .card-body {
-  @apply px-[1rem];
+  @apply px-[1rem] py-[1rem];
+}
+
+.section-heading {
+  @apply border-b-2 border-base-content/20 text-xl pb-1;
+}
+
+section {
+  @apply mb-[0.5rem];
+}
+
+.text-faded,
+.text-muted {
+  @apply opacity-60;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 6px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.25);
 }
 
 html,

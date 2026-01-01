@@ -8,8 +8,8 @@ import { LogoComponent } from '@libs/shared';
 @Component({
   selector: 'lib-login-page.component.ts',
   imports: [ReactiveFormsModule, LogoComponent],
-  templateUrl: './login-page.component.ts.html',
-  styleUrl: './login-page.component.ts.css',
+  templateUrl: './login-page.component.html',
+  styleUrl: './login-page.component.css',
 })
 export class LoginPage implements OnInit {
   private readonly _authService = inject(AuthService);

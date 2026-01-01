@@ -1,10 +1,12 @@
 <div class="flex w-full mb-[0.5rem]">
-  <button class="ms-auto btn btn-ghost btn-success" (click)="createNewAgency()">Create New</button>
+  <button class="ms-auto btn btn-sm btn-ghost btn-success text-[1rem]" (click)="createNewAgency()">
+    <span class="bi bi-plus-lg"></span> Create New
+  </button>
 </div>
 <ag-grid-angular
   [theme]="theme"
   class="h-[75vh] w-full"
   [rowData]="rowData()"
-  (rowClicked)="navigateToForm($event)"
+  (rowClicked)="goToDetails($event)"
   [columnDefs]="colDefs"
 ></ag-grid-angular>

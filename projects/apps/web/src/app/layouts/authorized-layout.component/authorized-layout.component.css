@@ -1,8 +1,9 @@
 .content {
-  max-height: calc(100vh - 69px);
-  min-height: calc(100vh - 69px);
+  max-height: calc(100vh - 61px);
+  min-height: calc(100vh - 61px);
   height: 100%;
   width: 100%;
   overflow-y: auto;
   padding: 1rem;
+  position: relative;
 }

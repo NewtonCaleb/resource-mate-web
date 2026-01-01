@@ -35,10 +35,10 @@ export class AgencyListComponent implements OnInit {
   ngOnInit(): void {}
 
   createNewAgency() {
-    this._router.navigate(['0'], { relativeTo: this._currentRoute });
+    this._router.navigate(['new'], { relativeTo: this._currentRoute });
   }
 
-  navigateToForm(e: RowClickedEvent) {
-    this._router.navigate(['agencies', e.data['id']]);
+  goToDetails(e: RowClickedEvent) {
+    this._router.navigate([e.data['id']], { relativeTo: this._currentRoute });
   }
 }
