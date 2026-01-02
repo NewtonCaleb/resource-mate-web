@@ -10,7 +10,6 @@ import { Agency, AgencyForm } from '../types';
 export class AgenciesService {
   private readonly API_URL = `${inject(API_CONFIG).apiUrl}/Agencies`;
   private readonly _httpClient = inject(HttpClient);
-  private readonly test$ = new BehaviorSubject<string>('testing');
 
   getAll(): Observable<Agency[]> {
     return this._httpClient.get<Agency[]>(this.API_URL);

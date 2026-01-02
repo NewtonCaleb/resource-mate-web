@@ -19,6 +19,10 @@
   @apply focus:border-primary hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary w-full;
 }
 
+.select {
+  @apply focus:border-primary hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary w-full;
+}
+
 .textarea {
   @apply focus:border-primary hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary w-full;
 }

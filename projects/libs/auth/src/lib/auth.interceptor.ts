@@ -6,8 +6,10 @@ import {
   HttpRequest,
   HttpResponse,
   HttpHeaders,
+  HttpEventType,
+  HttpErrorResponse,
 } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import { catchError, Observable, tap, throwError } from 'rxjs';
 import { AuthService } from './services/auth.service';
 
 @Injectable()
@@ -19,6 +21,15 @@ export class AuthInterceptor implements HttpInterceptor {
       headers: request.headers.append('Authorization', `Bearer ${this._authService.getToken()}`),
     });
 
-    return next.handle(authorizedRequest);
+    return next.handle(authorizedRequest).pipe(
+      catchError((err: any) => {
+        console.log(err);
+
+        if (err.status === 401) {
+          this._authService.logout();
+        }
+        return throwError(() => err);
+      })
+    );
   }
 }

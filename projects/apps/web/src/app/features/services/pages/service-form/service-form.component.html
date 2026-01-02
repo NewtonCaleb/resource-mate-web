@@ -1,0 +1,154 @@
+<a routerLink="../" class="block link no-underline hover:text-primary mb-[1rem]">
+  <i class="bi bi-chevron-left me-1"></i>Back
+</a>
+
+<form [formGroup]="form" (submit)="submit()">
+  <div class="card">
+    <h1 class="card-title">
+      {{ (form.get('name')?.valueChanges | async) || 'Cool Service Name' }}
+    </h1>
+    <div class="card-body flex flex-col gap-y-[2rem]">
+      <label class="floating-label">
+        <input type="text" placeholder="Name" formControlName="name" id="name" class="input" />
+        <span>Name</span>
+      </label>
+      <label class="floating-label">
+        <input class="input" type="email" placeholder="Email" formControlName="email" id="email" />
+        <span>Email</span>
+      </label>
+      <label class="floating-label">
+        <input
+          type="text"
+          placeholder="Street Address"
+          formControlName="streetAddress"
+          id="streetAddress"
+          class="input"
+        />
+        <span>Street Address</span>
+      </label>
+      <label class="floating-label">
+        <input type="text" placeholder="City" formControlName="city" id="city" class="input" />
+        <span>City</span>
+      </label>
+      <label class="floating-label">
+        <input type="text" placeholder="State" formControlName="state" id="state" class="input" />
+        <span>State</span>
+      </label>
+      <label class="floating-label">
+        <input type="text" placeholder="Zip" formControlName="zip" id="zip" class="input" />
+        <span>Zip</span>
+      </label>
+      <label class="floating-label">
+        <input type="text" placeholder="Phone" formControlName="phone" id="phone" class="input" />
+        <span>Phone</span>
+      </label>
+      <label class="floating-label">
+        <select formControlName="agencyId" name="agency" id="agency" class="select">
+          <option disabled value="">Select an agency...</option>
+          @for (agency of agencies(); track agency.id) {
+          <option [value]="agency.id">{{ agency.name }}</option>
+          } @empty {
+          <option disabled value="">No agencies found</option>
+          }
+        </select>
+        <span>Agency</span>
+      </label>
+      <label class="floating-label">
+        <select
+          formControlName="serviceTypeId"
+          (change)="serviceTypeChanged()"
+          name="serviceType"
+          id="serviceType"
+          class="select"
+        >
+          <option disabled value="">Select a service type...</option>
+          @for (type of serviceTypes(); track type.id) {
+          <option [value]="type.id">{{ type.label }}</option>
+          } @empty {
+          <option disabled value="">No service types found</option>
+          }
+        </select>
+        <span>Type</span>
+      </label>
+      <label class="floating-label">
+        <select
+          formControlName="serviceSubTypeId"
+          name="serviceSubType"
+          id="serviceSubType"
+          class="select"
+        >
+          <option disabled value="">Select a service sub type...</option>
+          @for (type of serviceSubTypes(); track type.id) {
+          <option [value]="type.id">{{ type.label }}</option>
+          } @empty {
+          <option disabled value="">No sub types found</option>
+          }
+        </select>
+        <span>Sub Type</span>
+      </label>
+      <label class="floating-label">
+        <select
+          formControlName="populationTypeId"
+          name="populationType"
+          id="populationType"
+          class="select"
+        >
+          <option disabled value="">Select a population type...</option>
+          @for (type of populationTypes(); track type.id) {
+          <option [value]="type.id">{{ type.label }}</option>
+          } @empty {
+          <option disabled value="">No population types found</option>
+          }
+        </select>
+        <span>Population Type</span>
+      </label>
+      <label class="floating-label">
+        <input type="text" placeholder="Cost" formControlName="cost" id="cost" class="input" />
+        <span>Cost</span>
+      </label>
+      <label class="floating-label">
+        <input
+          type="text"
+          placeholder="Requirements"
+          formControlName="requirements"
+          id="requirements"
+          class="input"
+        />
+        <span>Requirements</span>
+      </label>
+      <label class="floating-label">
+        <input
+          type="text"
+          placeholder="Website"
+          formControlName="website"
+          id="website"
+          class="input"
+        />
+        <span>Website</span>
+      </label>
+      <label class="floating-label">
+        <textarea
+          type="text"
+          placeholder="Description"
+          formControlName="description"
+          id="description"
+          class="textarea"
+        ></textarea>
+        <span>Description</span>
+      </label>
+      <label class="floating-label">
+        <textarea
+          type="text"
+          placeholder="Extra Notes"
+          formControlName="extraNotes"
+          id="extraNotes"
+          class="textarea"
+        ></textarea>
+        <span>Extra Notes</span>
+      </label>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-outline btn-primary mt-[2rem] w-full">
+    {{ isNewForm ? 'Create' : 'Save' }}
+  </button>
+</form>

@@ -16,6 +16,9 @@ import { HomeComponent } from './features/home/pages/root/home.component';
 import { AgencyListComponent } from './features/agencies/pages/agency-list/agency-list.component';
 import { AgencyFormComponent } from './features/agencies/pages/agency-form/agency-form.component';
 import { AgencyDetailsComponent } from './features/agencies/pages/agency-details/agency-details.component';
+import { ServiceListComponent } from './features/services/pages/service-list/service-list.component';
+import { ServiceFormComponent } from './features/services/pages/service-form/service-form.component';
+import { ServiceDetailsComponent } from './features/services/pages/service-details/service-details.component';
 
 const authGuard: CanActivateFn = (
   route: ActivatedRouteSnapshot,
@@ -67,7 +70,24 @@ export const routes: Routes = [
       },
       {
         path: 'services',
-        component: Header,
+        children: [
+          {
+            path: '',
+            component: ServiceListComponent,
+          },
+          {
+            path: 'new',
+            component: ServiceFormComponent,
+          },
+          {
+            path: ':id/edit',
+            component: ServiceFormComponent,
+          },
+          {
+            path: ':id',
+            component: ServiceDetailsComponent,
+          },
+        ],
       },
     ],
   },

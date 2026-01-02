@@ -14,7 +14,6 @@ import type { ColDef, RowClickedEvent } from 'ag-grid-community';
   styleUrl: './agency-list.component.css',
 })
 export class AgencyListComponent implements OnInit {
-  isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   private readonly _router = inject(Router);
   private readonly _currentRoute = inject(ActivatedRoute);
   private readonly _agenciesService = inject(AgenciesService);
