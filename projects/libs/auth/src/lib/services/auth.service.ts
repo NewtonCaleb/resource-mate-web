@@ -56,6 +56,7 @@ export class AuthService {
   }
 
   async login(credentials: Login): Promise<boolean> {
+    console.log(this.baseUrl);
     return await lastValueFrom(this.client.post(`${this.baseUrl}/Users/Login`, credentials))
       .then((res: any) => {
         if (res['token']) {

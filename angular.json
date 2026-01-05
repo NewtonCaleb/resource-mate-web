@@ -59,7 +59,7 @@
               ]
             }
           },
-          "defaultConfiguration": "production"
+          "defaultConfiguration": "development"
         },
         "serve": {
           "builder": "@angular/build:dev-server",
@@ -86,9 +86,7 @@
                 "input": "projects/apps/web/public"
               }
             ],
-            "styles": [
-              "projects/apps/web/src/styles.css"
-            ]
+            "styles": ["projects/apps/web/src/styles.css"]
           }
         }
       }

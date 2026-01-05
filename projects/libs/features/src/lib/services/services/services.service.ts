@@ -16,7 +16,7 @@ export class ServicesService {
   }
 
   getById(id: number): Observable<Service | null> {
-    return this._httpClient.get<Service | null>(this.API_URL, { params: { id } });
+    return this._httpClient.get<Service | null>(`${this.API_URL}/${id}`);
   }
 
   update(value: ServiceForm): Observable<Object> {
