@@ -16,15 +16,32 @@
 }
 
 .input {
-  @apply focus:border-primary hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary w-full;
+  @apply focus:border-primary hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary;
 }
 
 .select {
-  @apply focus:border-primary hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary w-full;
+  @apply focus:border-primary hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary;
 }
 
 .textarea {
-  @apply focus:border-primary hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary w-full;
+  @apply focus:border-primary hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary;
+}
+
+.form-label {
+  & label {
+    margin-bottom: 0.25rem;
+  }
+}
+
+label.required {
+  position: relative;
+  display: inline-block;
+
+  &::after {
+    content: '*';
+    color: red;
+    margin-left: 0.15rem;
+  }
 }
 
 .border-b-faded {
@@ -35,8 +52,16 @@
   @apply card-border border-base-300 shadow-sm bg-base-200;
 }
 
-.card-title {
+h1.card-title {
   @apply text-4xl p-[1rem] border-b-2 border-base-content/5;
+}
+
+h2.card-title {
+  @apply text-3xl p-[1rem] border-b-2 border-base-content/5;
+}
+
+ag-grid-angular {
+  min-height: 300px;
 }
 
 .card-body {

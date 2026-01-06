@@ -1,3 +1,4 @@
+import { Service } from '@libs/features';
 import { User } from '@libs/shared';
 
 export type Agency = {
@@ -19,7 +20,7 @@ export type Agency = {
   createdBy: User;
 
   // Children
-  // public ICollection<Service>? Services { get; set; }
+  services: Service[];
 };
 
 export type AgencyForm = {

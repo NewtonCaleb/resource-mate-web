@@ -11,7 +11,7 @@ import {
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, Location } from '@angular/common';
 import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
@@ -24,6 +24,7 @@ export class ServiceFormComponent implements OnInit {
   private readonly _agenciesService = inject(AgenciesService);
   private readonly _servicesService = inject(ServicesService);
   private readonly _serviceTypesService = inject(ServiceTypesService);
+  private readonly _location = inject(Location);
   private readonly _serviceSubTypesService = inject(ServiceSubTypesService);
   private readonly _populationTypesService = inject(PopulationTypesService);
   private readonly _activatedRoute = inject(ActivatedRoute);
@@ -118,5 +119,9 @@ export class ServiceFormComponent implements OnInit {
         (t) => t.id === parseInt(this.form.get('serviceTypeId')?.value ?? '0')
       )?.serviceSubTypes ?? []
     );
+  }
+
+  goBack() {
+    this._location.back();
   }
 }

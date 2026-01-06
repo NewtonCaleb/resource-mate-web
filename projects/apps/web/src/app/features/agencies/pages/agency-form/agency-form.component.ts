@@ -1,4 +1,4 @@
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, Location } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
@@ -12,6 +12,7 @@ import { lastValueFrom } from 'rxjs';
   styleUrl: './agency-form.component.css',
 })
 export class AgencyFormComponent implements OnInit {
+  private readonly _location = inject(Location);
   private readonly _agneciesService = inject(AgenciesService);
   private readonly _activatedRoute = inject(ActivatedRoute);
   private readonly _router = inject(Router);
@@ -50,6 +51,10 @@ export class AgencyFormComponent implements OnInit {
         }
       );
     }
+  }
+
+  goBack() {
+    this._location.back();
   }
 
   async submit() {

@@ -18,8 +18,7 @@
   >
     <input
       type="email"
-      class="input input-lg validator"
-      style="width: 33%"
+      class="input w-3/4 lg:w-1/3 input-lg validator"
       required
       placeholder="Email..."
       formControlName="email"
@@ -27,8 +26,7 @@
 
     <input
       type="password"
-      class="input input-lg validator"
-      style="width: 33%"
+      class="input w-3/4 lg:w-1/3 input-lg validator"
       placeholder="Password..."
       required
       formControlName="password"
@@ -42,7 +40,7 @@
     }
 
     <button
-      class="btn btn-xl w-1/3 btn-primary mt-[.75em]"
+      class="btn btn-xl w-3/4 lg:w-1/3 btn-primary mt-[.75em]"
       [disabled]="!loginForm.valid"
       type="submit"
     >

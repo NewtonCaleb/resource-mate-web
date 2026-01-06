@@ -1,4 +1,4 @@
-<a routerLink="../" class="block link no-underline hover:text-primary mb-[1rem]">
+<a (click)="goBack()" class="block link no-underline hover:text-primary mb-[1rem]">
   <i class="bi bi-chevron-left me-1"></i>Back
 </a>
 
@@ -7,43 +7,73 @@
     <h1 class="card-title">
       {{ (form.get('name')?.valueChanges | async) || 'Cool Service Name' }}
     </h1>
-    <div class="card-body flex flex-col gap-y-[2rem]">
-      <label class="floating-label">
-        <input type="text" placeholder="Name" formControlName="name" id="name" class="input" />
-        <span>Name</span>
-      </label>
-      <label class="floating-label">
-        <input class="input" type="email" placeholder="Email" formControlName="email" id="email" />
-        <span>Email</span>
-      </label>
-      <label class="floating-label">
+    <div class="card-body flex flex-col gap-y-[1rem]">
+      <div class="form-group">
+        <label for="name" class="required"> Name </label>
+        <input
+          type="text"
+          placeholder="Name"
+          formControlName="name"
+          id="name"
+          required
+          class="input w-full"
+        />
+      </div>
+      <div class="form-group">
+        <label class="required" for="email"> Email </label>
+        <input
+          class="input w-full"
+          type="email"
+          placeholder="Email"
+          required
+          formControlName="email"
+          id="email"
+        />
+      </div>
+      <div class="form-group">
+        <label class="required" for="streetAddress"> Street Address</label>
         <input
           type="text"
           placeholder="Street Address"
           formControlName="streetAddress"
           id="streetAddress"
-          class="input"
+          required
+          class="input w-full"
         />
-        <span>Street Address</span>
-      </label>
-      <label class="floating-label">
-        <input type="text" placeholder="City" formControlName="city" id="city" class="input" />
-        <span>City</span>
-      </label>
-      <label class="floating-label">
-        <input type="text" placeholder="State" formControlName="state" id="state" class="input" />
-        <span>State</span>
-      </label>
-      <label class="floating-label">
-        <input type="text" placeholder="Zip" formControlName="zip" id="zip" class="input" />
-        <span>Zip</span>
-      </label>
-      <label class="floating-label">
-        <input type="text" placeholder="Phone" formControlName="phone" id="phone" class="input" />
-        <span>Phone</span>
-      </label>
-      <label class="floating-label">
-        <select formControlName="agencyId" name="agency" id="agency" class="select">
+      </div>
+      <div class="form-group">
+        <label class="required" for="city"> City</label>
+        <input
+          type="text"
+          placeholder="City"
+          formControlName="city"
+          id="city"
+          required
+          class="input w-full"
+        />
+      </div>
+      <div class="form-group">
+        <label class="required" for="state"> State</label>
+        <input
+          type="text"
+          placeholder="State"
+          formControlName="state"
+          id="state"
+          required
+          class="input w-full"
+        />
+      </div>
+      <div class="form-group">
+        <label class="required" for="zip"> Zip </label>
+        <input type="text" placeholder="Zip" formControlName="zip" id="zip" class="input w-full" />
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input formControlName="phone" id="phone" class="input w-full" />
+      </div>
+      <div class="form-group">
+        <label class="required" for="agency"> Agency </label>
+        <select formControlName="agencyId" name="agency" id="agency" class="select w-full">
           <option disabled value="">Select an agency...</option>
           @for (agency of agencies(); track agency.id) {
           <option [value]="agency.id">{{ agency.name }}</option>
@@ -51,15 +81,16 @@
           <option disabled value="">No agencies found</option>
           }
         </select>
-        <span>Agency</span>
-      </label>
-      <label class="floating-label">
+      </div>
+      <div class="form-group">
+        <label class="required" for="serviceType">Type</label>
         <select
           formControlName="serviceTypeId"
           (change)="serviceTypeChanged()"
           name="serviceType"
           id="serviceType"
-          class="select"
+          required
+          class="select w-full"
         >
           <option disabled value="">Select a service type...</option>
           @for (type of serviceTypes(); track type.id) {
@@ -68,14 +99,14 @@
           <option disabled value="">No service types found</option>
           }
         </select>
-        <span>Type</span>
-      </label>
-      <label class="floating-label">
+      </div>
+      <div class="form-group">
+        <label for="serviceSubType">Sub Type</label>
         <select
           formControlName="serviceSubTypeId"
           name="serviceSubType"
           id="serviceSubType"
-          class="select"
+          class="select w-full"
         >
           <option disabled value="">Select a service sub type...</option>
           @for (type of serviceSubTypes(); track type.id) {
@@ -84,14 +115,15 @@
           <option disabled value="">No sub types found</option>
           }
         </select>
-        <span>Sub Type</span>
-      </label>
-      <label class="floating-label">
+      </div>
+      <div class="form-group">
+        <label class="required" for="populationType">Population Type</label>
         <select
           formControlName="populationTypeId"
           name="populationType"
           id="populationType"
-          class="select"
+          required
+          class="select w-full"
         >
           <option disabled value="">Select a population type...</option>
           @for (type of populationTypes(); track type.id) {
@@ -100,52 +132,59 @@
           <option disabled value="">No population types found</option>
           }
         </select>
-        <span>Population Type</span>
-      </label>
-      <label class="floating-label">
-        <input type="text" placeholder="Cost" formControlName="cost" id="cost" class="input" />
-        <span>Cost</span>
-      </label>
-      <label class="floating-label">
+      </div>
+      <div class="form-group">
+        <label class="required" for="cost">Cost</label>
+        <input
+          type="text"
+          placeholder="Cost"
+          formControlName="cost"
+          id="cost"
+          required
+          class="input w-full"
+        />
+      </div>
+      <div class="form-group">
+        <label class="required" for="requirements">Requirements</label>
         <input
           type="text"
           placeholder="Requirements"
           formControlName="requirements"
           id="requirements"
-          class="input"
+          required
+          class="input w-full"
         />
-        <span>Requirements</span>
-      </label>
-      <label class="floating-label">
+      </div>
+      <div class="form-group">
+        <label for="website">Website</label>
         <input
           type="text"
           placeholder="Website"
           formControlName="website"
           id="website"
-          class="input"
+          class="input w-full"
         />
-        <span>Website</span>
-      </label>
-      <label class="floating-label">
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
         <textarea
           type="text"
           placeholder="Description"
           formControlName="description"
           id="description"
-          class="textarea"
+          class="textarea w-full"
         ></textarea>
-        <span>Description</span>
-      </label>
-      <label class="floating-label">
+      </div>
+      <div class="form-group">
+        <label for="extraNotes">Extra Notes</label>
         <textarea
           type="text"
           placeholder="Extra Notes"
           formControlName="extraNotes"
           id="extraNotes"
-          class="textarea"
+          class="textarea w-full"
         ></textarea>
-        <span>Extra Notes</span>
-      </label>
+      </div>
     </div>
   </div>
   <button type="submit" class="btn btn-outline btn-primary mt-[2rem] w-full">
